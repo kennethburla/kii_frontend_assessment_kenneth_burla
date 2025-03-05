@@ -27,7 +27,7 @@ export function TokenBalance() {
   if (wallets.length === 0) {
     return (
       <div className="flex flex-col justify-center items-center flex-1 py-20 w-full">
-          <h2 className="text-2xl font-semibold text-secondary/70 mb-4">Connect your wallet to view balances</h2>
+          <h2 className="text-2xl font-semibold text-center text-secondary/70 mb-4">Connect your wallet to view balances</h2>
       </div>
     );
   }
@@ -35,7 +35,7 @@ export function TokenBalance() {
   if (!isOroTestNetChain) {
     return (
       <div className="flex flex-col justify-center items-center flex-1 py-20 w-full">
-        <h2 className="text-2xl font-semibold text-secondary/70 mb-4">Please Connect to Oro Testnet to see your balance</h2>
+        <h2 className="text-2xl font-semibold text-center text-secondary/70 mb-4">Please Connect to Oro Testnet to see your balance</h2>
       </div>
     );
   }
