@@ -8,7 +8,7 @@ import {
 import { useWalletStore } from '../Store/useWalletStore';
 
 export function useWalletConnection() {
-  const { wallets, setWallets, setChainId, setIsOroTestNetChain, setIsConnected } = useWalletStore()
+  const { setWallets, setChainId, setIsOroTestNetChain, setIsConnected } = useWalletStore()
   const [isConnecting, setIsConnecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,9 +33,9 @@ export function useWalletConnection() {
       setIsOroTestNetChain(currentChainId === ORO_TESTNET_CHAIN_ID);
 
       return accounts;
-    } catch (err: any) {
+    } catch (err) {
       console.error('Failed to connect wallet:', err);
-      setError(err.message || 'Failed to connect wallet');
+      setError('Failed to connect wallet');
       return null;
     } finally {
       setIsConnecting(false);
@@ -65,9 +65,9 @@ export function useWalletConnection() {
       } else {
         setError("No wallet selected.");
       }
-    } catch (err: any) {
+    } catch (err) {
       console.error("Failed to switch wallet:", err);
-      setError(err.message || "Failed to switch wallet");
+      setError("Failed to switch wallet");
     }
   }, []);
 
@@ -86,16 +86,16 @@ export function useWalletConnection() {
           address
         })));
       }
-      
+
       const chainIdHex = await window.ethereum.request({ method: 'eth_chainId' });
       const currentChainId = parseInt(chainIdHex, 16);
       setChainId(currentChainId);
       setIsOroTestNetChain(currentChainId === ORO_TESTNET_CHAIN_ID);
       setIsConnected(true);
       return true;
-    } catch (err: any) {
+    } catch (err) {
       console.error('Failed to switch chain:', err);
-      setError(err.message || 'Failed to switch to Oro Testnet');
+      setError('Failed to switch to Oro Testnet');
       return false;
     }
   }, []);
@@ -114,8 +114,9 @@ export function useWalletConnection() {
           params: [{ eth_accounts: {} }],
         });
       }
-    } catch (err: any) {
+    } catch (err) {
       setError("Failed to disconnect wallet.");
+      console.error('Failed to disconnect wallet:', err);
     }
 
   }, []);

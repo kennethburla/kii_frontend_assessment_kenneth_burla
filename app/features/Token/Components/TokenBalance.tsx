@@ -8,7 +8,7 @@ import TokenUnwrapForm from './TokenUnwrapForm';
 import { useState } from 'react';
 
 export function TokenBalance() {
-  const { wallets, isConnected, isOroTestNetChain } = useWalletStore()
+  const { wallets, isOroTestNetChain } = useWalletStore()
   const {
     data,
     isLoading,

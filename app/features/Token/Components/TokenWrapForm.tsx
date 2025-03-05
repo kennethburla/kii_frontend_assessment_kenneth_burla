@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { useWrapUnwrapToken } from '../Hooks/useWrapUnwrap';
 import { useWrapToken } from '../Hooks/useWrapToken';
-import { useUnwrapToken } from '../Hooks/useUnwrapToken';
 
 interface TokenWrapFormProps {
     tokenBalance: {
@@ -14,7 +12,6 @@ interface TokenWrapFormProps {
 export default function TokenWrapForm({
     tokenBalance: {
         native,
-        wkii
     },
     address
 }: TokenWrapFormProps) {

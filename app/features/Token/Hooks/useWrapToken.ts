@@ -15,11 +15,11 @@ export function useWrapToken(props?: UseWrapTokenProps) {
 
     const mutation = useMutation({
         mutationFn,
-        onSuccess(data, variables, context) {
+        onSuccess() {
             queryClient.invalidateQueries({ queryKey: [useGetTokenBalancesKey] })
             callback?.()
         },
-        onError(error, variables, context) {
+        onError(error) {
             console.log(error)
             toast({
                 title: formatError(error)
@@ -51,7 +51,7 @@ export function useWrapToken(props?: UseWrapTokenProps) {
             const tx = await contract.deposit({ value: amountWei });
 
             return await tx.wait();
-        } catch (err: any) {
+        } catch (err) {
             console.error('Error wrapping tokens:', err);
             throw err;
         }

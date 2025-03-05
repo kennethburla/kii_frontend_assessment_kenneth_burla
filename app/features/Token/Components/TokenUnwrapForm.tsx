@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { useWrapUnwrapToken } from '../Hooks/useWrapUnwrap';
-import { useWrapToken } from '../Hooks/useWrapToken';
 import { useUnwrapToken } from '../Hooks/useUnwrapToken';
 
 interface TokenUnwrapFormProps {
@@ -13,7 +11,6 @@ interface TokenUnwrapFormProps {
 
 export default function TokenUnwrapForm({
     tokenBalance: {
-        native,
         wkii
     },
     address
@@ -70,10 +67,7 @@ export default function TokenUnwrapForm({
                         {unWrapTokenPending ? "Unwrapping..." : "Unwrap to KII"}
                     </button>
                 </div>
-
-
             </div>
-
         </div>
     )
 }

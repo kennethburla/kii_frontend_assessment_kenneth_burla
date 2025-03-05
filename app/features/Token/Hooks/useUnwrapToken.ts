@@ -15,11 +15,11 @@ export function useUnwrapToken(props?: UseUnwrapTokenProps) {
 
     const mutation = useMutation({
         mutationFn,
-        onSuccess(data, variables, context) {
+        onSuccess() {
             queryClient.invalidateQueries({ queryKey: [useGetTokenBalancesKey] })
             callback?.()
         },
-        onError(error, variables, context) {
+        onError(error) {
             console.log(error)
             toast({
                 title: formatError(error)

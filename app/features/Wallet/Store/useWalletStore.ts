@@ -11,7 +11,7 @@ export interface UseWalletStore {
     setIsConnected: (value: boolean) => void
 }
 
-export const useWalletStore = create<UseWalletStore>((set, get) => ({
+export const useWalletStore = create<UseWalletStore>((set) => ({
     wallets: [],
     chainId: null,
     isOroTestNetChain: false,

@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes } from 'react'
 
-export default function Button(props: ButtonHTMLAttributes<any>) {
+export default function Button(props: ButtonHTMLAttributes<unknown>) {
     return (
         <button
             {...props}
