@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+
+  --color-background: #0C0316;
+  --color-primary: #2A1D3C;
+  --color-secondary: #5B3D7D;
+  --color-accent-1: #C7A9F8;
+  --color-accent-2: #9AD1F7;
+  --color-accent-3: #312C7F;
+  /* colors: {
+    primary: "#0087D3",
+    secondary: {
+      DEFAULT: "#FF9C01",
+      100: "#FF9001",
+      200: "#FF8E01",
+    },
+    success: {
+      DEFAULT: "#46e086",
+    },
+    error: {
+      DEFAULT: "#f74d4d",
+    },
+    neutral: {
+      DEFAULT: "#5C5C5C",
+    },
+    black: {
+      DEFAULT: "#000",
+      100: "#1E1E2D",
+      200: "#232533",
+    },
+    gray: {
+      100: "#CDCDE0",
+    },
+    background: {
+      DEFAULT: "#0C0316",
+    }, */
+}
+
+@layer base {
+  * {
+    outline: 0;
+  }
+
+} 

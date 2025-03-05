@@ -1,0 +1,10 @@
+import React, { ButtonHTMLAttributes } from 'react'
+
+export default function Button(props: ButtonHTMLAttributes<any>) {
+    return (
+        <button
+            {...props}
+            className={`h-[30px] bg-black rounded-lg flex flex-row items-center justify-center text-white font-bold text-sm border-1 cursor-pointer px-4 border-accent-1 ${props.className}`}
+        />
+    )
+}
