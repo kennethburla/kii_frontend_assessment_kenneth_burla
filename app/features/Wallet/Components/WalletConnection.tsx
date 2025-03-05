@@ -3,7 +3,6 @@
 import React, { useState } from 'react'
 import { useWalletConnection } from '../Hooks/useWalletConnection';
 import { useWalletStore } from '../Store/useWalletStore';
-import { formatAddress } from '@/libs/web3';
 import Button from '@/components/Button';
 
 export function WalletConnection() {
