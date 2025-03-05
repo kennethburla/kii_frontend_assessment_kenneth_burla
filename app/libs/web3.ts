@@ -3,7 +3,7 @@
 import { ethers } from 'ethers';
 
 // Constants for the Oro testnet
-export const ORO_TESTNET_CHAIN_ID = process.env.NEXT_PUBLIC_CHAIN_ID ?? 0;
+export const ORO_TESTNET_CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID) ?? 0;
 export const ORO_TESTNET_RPC_URL = process.env.NEXT_PUBLIC_RPC_URL ?? '';
 export const ORO_TESTNET_EXPLORER = process.env.NEXT_PUBLIC_WKII_CONTRACT ?? '';
 
