@@ -3,9 +3,9 @@
 import { ethers } from 'ethers';
 
 // Constants for the Oro testnet
-export const ORO_TESTNET_CHAIN_ID = 1336;
-export const ORO_TESTNET_RPC_URL = 'https://json-rpc.dos.sentry.testnet.v3.kiivalidator.com/';
-export const ORO_TESTNET_EXPLORER = 'https://explorer.kiichain.io/';
+export const ORO_TESTNET_CHAIN_ID = process.env.NEXT_PUBLIC_CHAIN_ID ?? 0;
+export const ORO_TESTNET_RPC_URL = process.env.NEXT_PUBLIC_RPC_URL ?? '';
+export const ORO_TESTNET_EXPLORER = process.env.NEXT_PUBLIC_WKII_CONTRACT ?? '';
 
 // Chain configuration
 export const ORO_TESTNET = {
@@ -163,15 +163,15 @@ export const WKII_TOKEN_ABI = [
   'function decimals() view returns (uint8)',
   'function balanceOf(address owner) view returns (uint256)',
   'function allowance(address owner, address spender) view returns (uint256)',
-  
+
   // Wrapped token specific functions
   'function deposit() payable',
   'function withdraw(uint256 wad)',
-  
+
   // Standard ERC20 functions
   'function transfer(address to, uint amount) returns (bool)',
   'function approve(address spender, uint256 amount) returns (bool)',
-  
+
   // Events
   'event Transfer(address indexed from, address indexed to, uint amount)',
   'event Approval(address indexed owner, address indexed spender, uint256 value)',
@@ -209,19 +209,19 @@ export const formatError = (error: any): string => {
   if (error?.reason === 'rejected') {
     return 'Transaction was rejected by user.';
   }
-  
+
   if (error?.action === 'estimateGas') {
     return 'Insufficient funds for this transaction.';
   }
-  
+
   // Extract error message from ethers or provider errors
-  const message = 
-    error?.reason || 
-    error?.data?.message || 
-    error?.error?.message || 
-    error?.message || 
+  const message =
+    error?.reason ||
+    error?.data?.message ||
+    error?.error?.message ||
+    error?.message ||
     'An unknown error occurred';
-  
+
   // Clean up the message
   return message.replace(/\[ethjs-query\]|Error:/gi, '').trim();
 };
