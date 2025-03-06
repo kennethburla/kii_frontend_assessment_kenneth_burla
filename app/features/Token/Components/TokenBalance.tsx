@@ -5,7 +5,7 @@ import { useGetTokenBalances } from '../Hooks/useGetTokenBalances';
 import { Skeleton } from "@/components/ui/skeleton"
 import TokenWrapForm from './TokenWrapForm';
 import TokenUnwrapForm from './TokenUnwrapForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function TokenBalance() {
   const { wallets, isOroTestNetChain } = useWalletStore()
@@ -23,18 +23,36 @@ export function TokenBalance() {
     setTimeout(() => setCopied(""), 2000);
   };
 
+  const [noWalletFound, setNoWalletFound] = useState(true)
+
+  useEffect(() => {
+    if (window && typeof window.ethereum === 'undefined') {
+      setNoWalletFound(true)
+    } else {
+      setNoWalletFound(false)
+    }
+  }, [])
+
+
+  if (noWalletFound) {
+    return (
+      <div className="flex flex-col justify-start items-center flex-1 py-20 w-full">
+        <h2 className="text-xl font-semibold text-center text-red-500/70 mb-4">Please install wallet or metamask to connect.</h2>
+      </div>
+    );
+  }
 
   if (wallets.length === 0) {
     return (
-      <div className="flex flex-col justify-center items-center flex-1 py-20 w-full">
-          <h2 className="text-2xl font-semibold text-center text-secondary/70 mb-4">Connect your wallet to view balances</h2>
+      <div className="flex flex-col justify-start items-center flex-1 py-20 w-full">
+        <h2 className="text-2xl font-semibold text-center text-secondary/70 mb-4">Connect your wallet to view balances</h2>
       </div>
     );
   }
 
   if (!isOroTestNetChain) {
     return (
-      <div className="flex flex-col justify-center items-center flex-1 py-20 w-full">
+      <div className="flex flex-col justify-start items-center flex-1 py-20 w-full">
         <h2 className="text-2xl font-semibold text-center text-secondary/70 mb-4">Please Connect to Oro Testnet to see your balance</h2>
       </div>
     );

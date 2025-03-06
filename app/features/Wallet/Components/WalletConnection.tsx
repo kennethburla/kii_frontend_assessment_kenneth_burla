@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useWalletConnection } from '../Hooks/useWalletConnection';
 import { useWalletStore } from '../Store/useWalletStore';
 import Button from '@/components/Button';
@@ -15,22 +15,35 @@ export function WalletConnection() {
     } = useWalletConnection();
     const { isConnected, isOroTestNetChain } = useWalletStore()
     const [isOpen, setIsOpen] = useState(false);
+    const [noWalletFound, setNoWalletFound] = useState(true)
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
+    useEffect(() => {
+        if (window && typeof window.ethereum === 'undefined') {
+            setNoWalletFound(true)
+        } else {
+            setNoWalletFound(false)
+        }
+    }, [])
+
 
     return (
         <div className="flex items-center gap-3">
             {!isConnected ? (
-                <Button
-                    onClick={connect}
-                    disabled={isConnecting}
-                >
+                <div className='flex flex-row items-center gap-x-3'>
+                    <Button
+                        onClick={connect}
+                        disabled={isConnecting || noWalletFound}
+                        className='disabled:opacity-40'
+                    >
 
-                    {isConnecting ? 'Connecting...' : 'Connect Wallet'}
-                </Button>
+                        {isConnecting ? 'Connecting...' : 'Connect Wallet'}
+                    </Button>
+
+                </div>
             ) : (
                 <>
                     <Button

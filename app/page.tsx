@@ -42,7 +42,7 @@ export default function Home() {
             </p>
           </div>
           <TokenBalance />
-          <div className="pb-6 animate-fade-in opacity-80">
+          {/* <div className="pb-6 animate-fade-in opacity-80">
             <h2 className="text-lg font-semibold mb-3">About KII Wrapping</h2>
             <div className="text-sm text-muted-foreground space-y-2">
               <p>
@@ -56,7 +56,7 @@ export default function Home() {
                 You can wrap and unwrap tokens at any time with no fees (other than gas costs).
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </main>
       <Footer />
